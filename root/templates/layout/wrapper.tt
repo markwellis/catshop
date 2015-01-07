@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>[% page_title || 'CatShop' %]</title>
+        <link rel="shortcut icon" href="/static/favicon.ico" />
+    </head>
+    <body>
+        [% content %]
+    </body>
+</html>
