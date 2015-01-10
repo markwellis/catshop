@@ -29,6 +29,8 @@ requires 'DBIx::Class::TimeStamp';
 requires 'DBIx::Class::InflateColumn::Authen::Passphrase';
 requires 'DBIx::Class::MaterializedPath';
 
+requires 'App::Sqitch';
+
 test_requires 'Test::More';
 
 auto_install;
