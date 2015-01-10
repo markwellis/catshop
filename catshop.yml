@@ -19,4 +19,5 @@ Model::DB:
     connect_info:
         pg_enable_utf8: 1
         quote_names: 1
-    schema_class: DB::Schema
+    schema_class: CatShop::Schema
+    compose_namespaces: 0

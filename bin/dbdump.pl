@@ -2,12 +2,15 @@ use strict;
 use warnings;
 
 use FindBin '$Bin';
-use lib "../$Bin";
+use lib "$Bin/..";
 
 use DBIx::Class::Schema::Loader qw/ make_schema_at /;
 
-use CatShop;
-my $config = CatShop->config->{'Model::DB'};
+use Config::ZOMG;
+my $config = Config::ZOMG->new(
+    name => 'catshop',
+    path => "$Bin/..",
+)->load->{'Model::DB'};
 
 make_schema_at(
     $config->{schema_class},

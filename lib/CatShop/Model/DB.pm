@@ -1,4 +1,4 @@
-package Catalyst::Model::DB;
+package CatShop::Model::DB;
 use Moose;
 
 extends 'Catalyst::Model::DBIC::Schema';
