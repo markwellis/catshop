@@ -6,11 +6,13 @@ __PACKAGE__->config(
     namespace   => '',
 );
 
-sub default: Private {
-    my ( $self, $c ) = @_;
-
+sub base : PathPart('') Chained(/) CaptureArgs(0) {
 }
 
-sub end: ActionClass('RenderView') {}
+sub default: Private {
+}
+
+sub end: ActionClass('RenderView') {
+}
 
 __PACKAGE__->meta->make_immutable;

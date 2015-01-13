@@ -4,7 +4,7 @@ use inc::Module::Install;
 name 'CatShop';
 all_from 'lib/CatShop.pm';
 
-requires 'Catalyst::Runtime' => '5.90062';
+requires 'Catalyst::Runtime' => '5.90082';
 requires 'Catalyst::View::TT';
 requires 'Catalyst::Plugin::ConfigLoader';
 requires 'Catalyst::Action::RenderView';
@@ -26,8 +26,10 @@ requires 'DBIx::Class::Schema::Loader';
 requires 'MooseX::NonMoose';
 requires 'Catalyst::Model::DBIC::Schema';
 requires 'DBIx::Class::TimeStamp';
+requires 'DateTime::Format::Pg';
 requires 'DBIx::Class::InflateColumn::Authen::Passphrase';
 requires 'DBIx::Class::MaterializedPath';
+requires 'DBIx::Class::DynamicDefault';
 
 requires 'App::Sqitch';
 
