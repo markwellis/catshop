@@ -3,6 +3,7 @@
     <head>
         <title>[% page_title || 'CatShop' %]</title>
         <link rel="shortcut icon" href="/static/favicon.ico" />
+        <link rel="icon" type="image/png" href="[% c.uri_for('/static/favicon.png') | html %]">
     </head>
     <body>
         [% content %]
