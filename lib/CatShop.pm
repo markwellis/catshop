@@ -1,4 +1,7 @@
+use utf8;
+
 package CatShop;
+
 use Moose;
 use namespace::autoclean;
 
@@ -8,8 +11,8 @@ our $VERSION = 0.001000;
 $VERSION = eval $VERSION;
 
 use Catalyst qw/
-    ConfigLoader
-/;
+  ConfigLoader
+  /;
 
 extends 'Catalyst';
 
