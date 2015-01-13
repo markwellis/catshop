@@ -1,18 +1,20 @@
+use utf8;
+
 package CatShop::Controller::Products;
+
 use parent 'Catalyst::Controller';
 use Moose;
 
 sub base : PathPart('products') ChainedParent CaptureArgs(0) {
 }
 
-sub load: GET PathPart('') Chained(base) Args() {
+sub load : GET PathPart('') Chained(base) Args() {
     my ( $self, $c, @path ) = @_;
 
-    my $category = $c->model('DB::Category')->search_related( 'parents', {
-        'me.parent_path' => join '/', @path,
-    } );
+    #XXX check that $path[-1] is not a product (XXX create products :p)
 
-    map { warn $_->name } $category->all;
+    my $category = $c->model('DB::Category')->load_path( @path );
+    #XXX check category is defined
 }
 
 __PACKAGE__->meta->make_immutable;
