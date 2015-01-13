@@ -1,4 +1,5 @@
-catshop_local.yml
+catshop_local.*
+sqitch_local.conf
 
 META.yml
 MYMETA.json
@@ -7,6 +8,7 @@ Makefile
 blib/
 inc/
 pm_to_blib
-.*.swp
+*.swp
 Makefile.old
 MANIFEST
+*.DS_Store
