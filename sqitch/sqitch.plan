@@ -1,0 +1,4 @@
+%syntax-version=1.0.0
+%project=catshop
+
+categories/create 2015-01-12T21:27:56Z Mark Ellis <m@rkellis.com># add categories table
