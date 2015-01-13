@@ -30,8 +30,8 @@ __PACKAGE__->add_columns(
   "normalized_name",
   {
     data_type => "varchar",
-    dynamic_default_on_create => "_call_set_normalized_name_if_exists",
-    dynamic_default_on_update => "_call_set_normalized_name_if_exists",
+    dynamic_default_on_create => "_set_normalized_name_if_exists",
+    dynamic_default_on_update => "_set_normalized_name_if_exists",
     is_nullable => 0,
     size => 256,
   },
@@ -55,7 +55,10 @@ __PACKAGE__->add_columns(
   },
 );
 __PACKAGE__->set_primary_key("id");
-__PACKAGE__->add_unique_constraint("categories_normalized_name_key", ["normalized_name"]);
+__PACKAGE__->add_unique_constraint(
+  "categories_normalized_name_parent_id",
+  ["normalized_name", "parent_id"],
+);
 __PACKAGE__->has_many(
   "categories",
   "CatShop::Schema::Result::Category",
@@ -75,15 +78,15 @@ __PACKAGE__->belongs_to(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07042 @ 2015-01-12 23:38:21
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:hPuax5+qxf7VfiV7RrmcRA
+# Created by DBIx::Class::Schema::Loader v0.07042 @ 2015-01-13 23:48:00
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:uT8zMqKnsalR9QBDvH6xbA
 
 __PACKAGE__->load_components('MaterializedPath');
 sub materialized_path_columns {
    return {
       parent => {
          parent_column                => 'parent_id',
-         parent_fk_column             => 'normalized_name',
+         parent_fk_column             => 'id',
          materialized_path_column     => 'parent_path',
          include_self_in_path         => 1,
          include_self_in_reverse_path => 0,

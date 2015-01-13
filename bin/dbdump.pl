@@ -34,7 +34,7 @@ make_schema_at(
             if ( $table eq 'categories' ) {
                 if ( $column_name eq 'normalized_name' ) {
                     for ( qw/dynamic_default_on_update dynamic_default_on_create/ ) {
-                        $return->{$_} = '_call_set_normalized_name_if_exists';
+                        $return->{$_} = '_set_normalized_name_if_exists';
                     }
                 }
             }
