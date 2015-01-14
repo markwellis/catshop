@@ -2,3 +2,7 @@
 %project=catshop
 
 categories/create 2015-01-12T21:27:56Z Mark Ellis <m@rkellis.com># add categories table
+products/create 2015-01-14T21:59:51Z Mark Ellis <m@rkellis.com># create products table
+meta_types/create 2015-01-14T22:54:14Z Mark Ellis <m@rkellis.com># create product_meta table
+product_meta/create 2015-01-14T22:54:39Z Mark Ellis <m@rkellis.com># create meta_types table
+product_category/create 2015-01-14T23:14:01Z Mark Ellis <m@rkellis.com># create product_category table

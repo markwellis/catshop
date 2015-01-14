@@ -76,10 +76,16 @@ __PACKAGE__->belongs_to(
     on_update     => "NO ACTION",
   },
 );
+__PACKAGE__->has_many(
+  "product_categories",
+  "CatShop::Schema::Result::ProductCategory",
+  { "foreign.category_id" => "self.id" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
 
 
-# Created by DBIx::Class::Schema::Loader v0.07042 @ 2015-01-13 23:48:00
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:uT8zMqKnsalR9QBDvH6xbA
+# Created by DBIx::Class::Schema::Loader v0.07042 @ 2015-01-14 23:19:49
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:zsm334bTLEXpLNzUFppUWQ
 
 __PACKAGE__->load_components('MaterializedPath');
 sub materialized_path_columns {
