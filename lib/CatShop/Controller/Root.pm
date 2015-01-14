@@ -14,6 +14,9 @@ sub create : GET Chained(base) Args(0) {
 }
 
 sub default : Private {
+    my ( $self, $c ) = @_;
+
+    $c->detach( '/error/not_found' );
 }
 
 sub end : ActionClass('RenderView') {
