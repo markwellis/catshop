@@ -1,5 +1,5 @@
 catshop_local.*
-sqitch_local.conf
+sqitch_local.*
 
 META.yml
 MYMETA.json
@@ -12,3 +12,4 @@ pm_to_blib
 Makefile.old
 MANIFEST
 *.DS_Store
+.vagrant/

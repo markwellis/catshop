@@ -1,0 +1,36 @@
+=encoding utf8
+
+=head1 CatShop
+
+=head2 Setting up a dev env
+
+First of all Install Vagrant and VirtualBox and we also require the hostmanager plugin for Vagrant, which can be installed using.
+
+    vagrant plugin install vagrant-hostmanager
+
+Then do the following to create a VM running CatShop. The created VM will be Redhat Centos 7
+with Puppet and Postgres. It'll also setup apache to port forward to your app.
+
+Fork https://github.com/catshop/catshop on your github account and check it out.
+
+    git clone git@github.com:<$YOUR_ACC>/catshop.git
+    cd catshop
+    vagrant up #This takes an age
+
+    cp catshop_local.yml.example catshop.local
+    cp squitch_local.conf.example squitch_local.conf
+
+    vagrant ssh
+
+    cd /var/www/catshop
+    cpanm --installdeps . -v #This will take forever the first time you run it.
+    sqitch deploy
+    CATALYST_DEBUG=1 DBIC_TRACE=1 DBIC_TRACE_PROFILE=console plackup \
+        --no-default-middleware -s Starlet -I lib *.psgi --max-workers=10
+
+Now browse to https://dev.catshop.io/ on your machine, and ignore the https errors.
+=cut
+
+=head2 Help!
+
+We're usually on #catshop on irc.perl.org, come in for a chat or just to abuse us. Happy hacking, pull requests welcome!

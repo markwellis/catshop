@@ -15,6 +15,7 @@ requires 'Config::Any::YAML';
 requires 'YAML::XS';
 requires 'Config::ZOMG';
 
+requires 'Starlet';
 requires 'Plack::Builder';
 requires 'Plack::Middleware::Static';
 requires 'Carp';
