@@ -3,7 +3,12 @@
 =head1 CatShop
 
 =head2 Setting up a dev env
-Install Vagrant and VirtualBox, then do the following to create a VM running CatShop. The created VM will be Redhat Centos 7
+
+First of all Install Vagrant and VirtualBox and we also require the hostmanager plugin for Vagrant, which can be installed using.
+
+    vagrant plugin install vagrant-hostmanager
+
+Then do the following to create a VM running CatShop. The created VM will be Redhat Centos 7
 with Puppet and Postgres. It'll also setup apache to port forward to your app.
 
     git clone https://github.com/catshop/catshop.git
@@ -24,4 +29,5 @@ Now browse to https://dev.catshop.io/ on your machine, and ignore the https erro
 =cut
 
 =head2 Help!
+
 We're usually on #catshop on irc.perl.org, come in for a chat or just to abuse us. As always, patches welcome!
