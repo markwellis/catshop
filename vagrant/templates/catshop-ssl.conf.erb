@@ -1,0 +1,11 @@
+<VirtualHost *:443>
+    ServerName <%= @fqdn %>
+
+    SSLEngine on
+    SSLCertificateFile      /etc/httpd/ssl/self-ssl.crt
+    SSLCertificateKeyFile   /etc/httpd/ssl/self-ssl.key
+
+    RequestHeader set X-Forwarded-Proto https
+    RequestHeader set X-Forwarded-Port 443
+    ProxyPass / http://localhost:5000/ retry=0 timeout=30
+</VirtualHost>
