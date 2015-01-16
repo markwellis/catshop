@@ -11,7 +11,8 @@ First of all Install Vagrant and VirtualBox and we also require the hostmanager 
 Then do the following to create a VM running CatShop. The created VM will be Redhat Centos 7
 with Puppet and Postgres. It'll also setup apache to port forward to your app.
 
-Fork https://github.com/catshop/catshop on your github account and check it out.
+Fork L<https://github.com/catshop/catshop> on your github account and check it out.
+See L<https://help.github.com/articles/syncing-a-fork/>.
 
     git clone git@github.com:<$YOUR_ACC>/catshop.git
     cd catshop

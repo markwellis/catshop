@@ -29,7 +29,7 @@ package {["perl-Getopt-Long", "perl-Data-Dumper"]:
 #We should change this to use perlbrews version once GH#409 is fixed
 exec {"install_perlbrew":
     command => "/usr/bin/su vagrant -c '/usr/bin/curl -L http://install.perlbrew.pl/ | /usr/bin/bash' -",
-    creates => "/home/vagrant/.perlbrew",
+    creates => "/home/vagrant/perl5",
     cwd     => "/home/vagrant",
     environment => "PERLBREWURL=https://raw.githubusercontent.com/grim8634/App-perlbrew/develop/perlbrew",
     require => Package['perl-Getopt-Long'],
@@ -45,9 +45,9 @@ exec {"install_perl520":
 
 file {"bashrc":
     path    => "/home/vagrant/.bashrc",
-    content => ". ~/perl5/perlbrew/etc/bashrc",
+    content => "source ~/perl5/perlbrew/etc/bashrc",
     ensure  => file,
-    require => Exec['install_perl520'],
+    require => Exec['install_perlbrew'],
     owner   => 'vagrant',
     group   => 'vagrant',
 }
@@ -79,7 +79,8 @@ file {"/etc/httpd/conf.d/catshop.conf":
 file {"/etc/httpd/conf.d/catshop-ssl.conf":
     content => template('/vagrant/vagrant/templates/catshop-ssl.conf.erb'),
     ensure  => file,
-    notify => Service["httpd"],
+    notify  => Service["httpd"],
+    require => Package["httpd"],
 }
 
 file {"/etc/httpd/ssl":
