@@ -11,9 +11,11 @@ First of all Install Vagrant and VirtualBox and we also require the hostmanager 
 Then do the following to create a VM running CatShop. The created VM will be Redhat Centos 7
 with Puppet and Postgres. It'll also setup apache to port forward to your app.
 
-    git clone https://github.com/catshop/catshop.git
+Fork https://github.com/catshop/catshop on your github account and check it out.
+
+    git clone git@github.com:<$YOUR_ACC>/catshop.git
     cd catshop
-    vagrant provision #This takes an age
+    vagrant up #This takes an age
 
     cp catshop_local.yml.example catshop.local
     cp squitch_local.conf.example squitch_local.conf
@@ -31,4 +33,4 @@ Now browse to https://dev.catshop.io/ on your machine, and ignore the https erro
 
 =head2 Help!
 
-We're usually on #catshop on irc.perl.org, come in for a chat or just to abuse us. As always, patches welcome!
+We're usually on #catshop on irc.perl.org, come in for a chat or just to abuse us. Happy hacking, pull requests welcome!
