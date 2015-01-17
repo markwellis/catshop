@@ -13,3 +13,6 @@ Makefile.old
 MANIFEST
 *.DS_Store
 .vagrant/
+local/
+vagrant/modules/local_config
+
