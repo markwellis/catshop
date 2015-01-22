@@ -97,3 +97,8 @@ exec {"create_cert":
     notify  => Service["httpd"],
 }
 
+if defined( "local_config") {
+    notify {'defined':}
+    include "local_config"
+}
+
