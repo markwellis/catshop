@@ -24,10 +24,11 @@ See L<https://help.github.com/articles/syncing-a-fork/>.
     vagrant ssh
 
     cd /var/www/catshop
-    cpanm --installdeps . -v #This will take forever the first time you run it.
-    sqitch deploy
-    CATALYST_DEBUG=1 DBIC_TRACE=1 DBIC_TRACE_PROFILE=console plackup \
-        --no-default-middleware -s Starlet -I lib *.psgi --max-workers=10
+    cpanm Carton
+    carton install #This will take forever the first time you run it.
+    carton exec sqitch deploy
+    CATALYST_DEBUG=1 DBIC_TRACE=1 DBIC_TRACE_PROFILE=console carton exec \
+    plackup --no-default-middleware -s Starlet -I lib *.psgi --max-workers=10
 
 Now browse to https://dev.catshop.io/ on your machine, and ignore the https errors.
 =cut
