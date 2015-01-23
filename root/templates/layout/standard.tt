@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>[% page_title || 'CatShop' %]</title>
+        <link rel="shortcut icon" href="[% c.uri_for('/static/favicon.png') | html %]" />
+        <link rel="icon" type="image/png" href="[% c.uri_for('/static/favicon.png') | html %]">
+    </head>
+    <body>
+        <header>[% PROCESS "layout/standard/header.tt" %]</header>
+        <nav>[% PROCESS "layout/standard/nav.tt" %]</nav>
+        [% content %]
+        <footer>[% PROCESS "layout/standard/footer.tt" %]</footer>
+    </body>
+</html>

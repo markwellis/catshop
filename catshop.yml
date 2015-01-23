@@ -10,7 +10,7 @@ encoding: UTF-8
 
 View::TT:
     TEMPLATE_EXTENSION: ".tt"
-    WRAPPER: "layout/wrapper.tt"
+    WRAPPER: "layout/standard.tt"
     INCLUDE_PATH: "__path_to(root/templates)__"
     ENCODING: UTF-8
     render_die: 1
