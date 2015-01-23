@@ -1,4 +1,4 @@
 [engine "pg"]
     target = catshop-dev
 [target "catshop-dev"]
-    uri = db:pg://catshop:reallysecure@localhost/catshop-dev
+    uri = db:pg://catshop:CatShop@localhost/catshop-dev
