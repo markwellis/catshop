@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>[% page_title || 'CatShop' %]</title>
+        <title>[% page_title || c.config.name | html %]</title>
         <link rel="shortcut icon" href="[% c.uri_for('/static/favicon.png') | html %]" />
         <link rel="icon" type="image/png" href="[% c.uri_for('/static/favicon.png') | html %]">
+        <link rel="stylesheet" href="[% c.uri_for('/static/external/bootstrap-3.3.2-dist/css/bootstrap.min.css') | html %]">
     </head>
     <body>
+        <script src="[% c.uri_for('/static/external/jQuery/jquery-1.11.2.min.js') | html %]"></script>
+        <script src="[% c.uri_for('/static/external/bootstrap-3.3.2-dist/js/bootstrap.min.js') | html %]"></script>
         <header>[% PROCESS "layout/standard/header.tt" %]</header>
         <nav>[% PROCESS "layout/standard/nav.tt" %]</nav>
         [% content %]

@@ -1,0 +1,1 @@
+<a href="[% c.uri_for('/') | html %]"><img src="[% c.uri_for('/static/images/logo.png') | html %]" alt="[% c.config.name | html %]" /></a>
