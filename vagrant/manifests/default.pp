@@ -1,4 +1,6 @@
-package {["httpd", "mod_ssl", "postgresql-devel"]:
+package {[
+    "httpd", "mod_ssl", "postgresql-devel", "unzip",
+    ]:
     ensure => present,
     allow_virtual => true,
 }
@@ -12,6 +14,7 @@ package {["firewalld"]:
 service { "httpd":
     ensure => "running",
     require => Package["httpd"],
+    enable => true,
 }
 
 file {"/var/www/catshop":
@@ -36,7 +39,7 @@ exec {"install_perlbrew":
 }
 
 exec {"install_perl520":
-    command => "/usr/bin/su vagrant -c '~/perl5/perlbrew/bin/perlbrew install perl-5.20.1' -",
+    command => "/usr/bin/su vagrant -c '~/perl5/perlbrew/bin/perlbrew -n install perl-5.20.1' -",
     timeout => 3600, #Perl takes a long time to compile
     cwd     => "/home/vagrant",
     require => [Exec['install_perlbrew'], Package['perl-Data-Dumper']],
@@ -45,11 +48,30 @@ exec {"install_perl520":
 
 file {"bashrc":
     path    => "/home/vagrant/.bashrc",
-    content => "source ~/perl5/perlbrew/etc/bashrc",
-    ensure  => file,
-    require => Exec['install_perlbrew'],
+    ensure  => present,
     owner   => 'vagrant',
     group   => 'vagrant',
+}
+
+line { "perlbrew bashrc line":
+    line    => "source ~/perl5/perlbrew/etc/bashrc",
+    file    => "/home/vagrant/.bashrc",
+}
+
+define line($file, $line, $ensure = 'present') {
+    case $ensure {
+        default : { err ( "unknown ensure value ${ensure}" ) }
+        present: {
+            exec { "/bin/echo '${line}' >> '${file}'":
+                unless => "/bin/grep -qFx '${line}' '${file}'"
+            }
+        }
+        absent: {
+            exec { "/usr/bin/perl -ni -e 'print unless /^\\Q${line}\\E\$/' '${file}'":
+                onlyif => "/bin/grep -qFx '${line}' '${file}'"
+            }
+        }
+    }
 }
 
 exec {"perlbrew_switch_perl520":
@@ -61,6 +83,12 @@ exec { "install_cpanm":
     command => "/usr/bin/su vagrant -c '/home/vagrant/perl5/perlbrew/bin/perlbrew install-cpanm'",
     require => Exec['perlbrew_switch_perl520'],
     creates => '/home/vagrant/perl5/perlbrew/bin/cpanm'
+}
+
+exec { "install_carton":
+    command => "/usr/bin/su vagrant -c '/home/vagrant/perl5/perlbrew/bin/perlbrew exec cpanm Carton'",
+    require => Exec['install_cpanm'],
+    creates => '/home/vagrant/perl5/perlbrew/bin/carton'
 }
 
 class { 'postgresql::server': }
