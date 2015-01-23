@@ -1,5 +1,7 @@
 catshop_local.*
+!catshop_local.*.example
 sqitch_local.*
+!sqitch_local.*.example
 pm_to_blib
 *.swp
 *.DS_Store
