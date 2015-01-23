@@ -1,0 +1,11 @@
+---
+using_frontend_proxy: 1
+
+View::HTML:
+    DEBUG: 1
+
+Model::DB:
+    connect_info:
+        user: catshop
+        password: reallysecure
+        dsn: dbi:Pg:dbname=catshop-dev

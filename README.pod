@@ -19,12 +19,11 @@ See L<https://help.github.com/articles/syncing-a-fork/>.
     vagrant up #This takes an age
 
     cp catshop_local.yml.example catshop.local
-    cp squitch_local.conf.example squitch_local.conf
+    cp sqitch_local.conf.example sqitch_local.conf
 
     vagrant ssh
 
     cd /var/www/catshop
-    cpanm Carton
     carton install #This will take forever the first time you run it.
     carton exec sqitch deploy
     CATALYST_DEBUG=1 DBIC_TRACE=1 DBIC_TRACE_PROFILE=console carton exec \
