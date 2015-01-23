@@ -10,13 +10,13 @@ __PACKAGE__->config( namespace => '', );
 sub base : PathPart('') Chained(/) CaptureArgs(0) {
 }
 
-sub create : GET Chained(base) Args(0) {
+sub index : PathPart('') Chained(base) Args(0) {
 }
 
 sub default : Private {
     my ( $self, $c ) = @_;
 
-    $c->detach( '/error/not_found' );
+    $c->go( '/error/not_found' );
 }
 
 sub end : ActionClass('RenderView') {
