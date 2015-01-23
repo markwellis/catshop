@@ -7,5 +7,5 @@ View::HTML:
 Model::DB:
     connect_info:
         user: catshop
-        password: reallysecure
+        password: CatShop
         dsn: dbi:Pg:dbname=catshop-dev
