@@ -1,15 +1,20 @@
+exec {"yum upgrade":
+    command => "/usr/bin/yum -y upgrade",
+}
+
 package {[
     "httpd", "mod_ssl", "postgresql-devel", "unzip",
+    "telnet", "bind-utils"
     ]:
     ensure => present,
     allow_virtual => true,
+    require => Exec['yum upgrade'],
 }
 
 package {["firewalld"]:
     ensure => absent,
     allow_virtual => true,
 }
-
 
 service { "httpd":
     ensure => "running",
@@ -46,16 +51,17 @@ exec {"install_perl520":
     creates => "/home/vagrant/perl5/perlbrew/perls/perl-5.20.1",
 }
 
-file {"bashrc":
-    path    => "/home/vagrant/.bashrc",
+file {"bash_profile":
+    path    => "/home/vagrant/.bash_profile",
     ensure  => present,
     owner   => 'vagrant',
     group   => 'vagrant',
 }
 
-line { "perlbrew bashrc line":
+line { "perlbrew bash_profile line":
     line    => "source ~/perl5/perlbrew/etc/bashrc",
-    file    => "/home/vagrant/.bashrc",
+    file    => "/home/vagrant/.bash_profile",
+    require => [File['bash_profile'], Exec['install_perlbrew']],
 }
 
 define line($file, $line, $ensure = 'present') {
@@ -75,18 +81,18 @@ define line($file, $line, $ensure = 'present') {
 }
 
 exec {"perlbrew_switch_perl520":
-    command => "/usr/bin/su vagrant -c '/home/vagrant/perl5/perlbrew/bin/perlbrew switch perl-5.20.1'",
-    require => Exec['install_perl520'],
+    command => "/usr/bin/su vagrant -lc '/home/vagrant/perl5/perlbrew/bin/perlbrew switch perl-5.20.1'",
+    require => [Exec['install_perl520'], Line['perlbrew bash_profile line']],
 }
 
 exec { "install_cpanm":
-    command => "/usr/bin/su vagrant -c '/home/vagrant/perl5/perlbrew/bin/perlbrew install-cpanm'",
+    command => "/usr/bin/su vagrant -lc '/home/vagrant/perl5/perlbrew/bin/perlbrew install-cpanm'",
     require => Exec['perlbrew_switch_perl520'],
     creates => '/home/vagrant/perl5/perlbrew/bin/cpanm'
 }
 
 exec { "install_carton":
-    command => "/usr/bin/su vagrant -c '/home/vagrant/perl5/perlbrew/bin/perlbrew exec cpanm Carton'",
+    command => "/usr/bin/su vagrant -lc '/home/vagrant/perl5/perlbrew/bin/perlbrew exec cpanm Carton'",
     require => Exec['install_cpanm'],
     creates => '/home/vagrant/perl5/perlbrew/bin/carton'
 }
@@ -102,13 +108,14 @@ file {"/etc/httpd/conf.d/catshop.conf":
     content => template('/vagrant/vagrant/templates/catshop.conf.erb'),
     ensure  => file,
     notify => Service["httpd"],
+    require => Package["httpd"],
 }
 
 file {"/etc/httpd/conf.d/catshop-ssl.conf":
     content => template('/vagrant/vagrant/templates/catshop-ssl.conf.erb'),
     ensure  => file,
     notify  => Service["httpd"],
-    require => Package["httpd"],
+    require => [Package["httpd"], Exec['create_cert']],
 }
 
 file {"/etc/httpd/ssl":

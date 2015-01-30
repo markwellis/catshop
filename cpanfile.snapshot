@@ -336,14 +336,12 @@ DISTRIBUTIONS
       CatalystX::Component::Traits 0.14
       DBD::SQLite 0
       DBIx::Class 0.08114
-      DBIx::Class::Schema::Loader 0.04005
       ExtUtils::MakeMaker 6.59
       Hash::Merge 0
       List::MoreUtils 0
       Module::Runtime 0.012
       Moose 1.12
       MooseX::MarkAsMethods 0.13
-      MooseX::NonMoose 0.16
       MooseX::Types 0
       MooseX::Types::LoadableClass 0.009
       Storable 0
@@ -2641,6 +2639,20 @@ DISTRIBUTIONS
       Filesys::Notify::Simple 0.12
     requirements:
       ExtUtils::MakeMaker 6.30
+  Gazelle-0.22
+    pathname: K/KA/KAZEBURO/Gazelle-0.22.tar.gz
+    provides:
+      Gazelle 0.22
+      Plack::Handler::Gazelle 0.22
+    requirements:
+      Guard 0
+      Module::Build 0.38
+      Parallel::Prefork 0
+      Plack 0
+      Server::Starter 0
+      Stream::Buffered 0
+      Try::Tiny 0
+      perl 5.008001
   Getopt-Long-Descriptive-0.098
     pathname: R/RJ/RJBS/Getopt-Long-Descriptive-0.098.tar.gz
     provides:
@@ -2660,6 +2672,12 @@ DISTRIBUTIONS
       overload 0
       strict 0
       warnings 0
+  Guard-1.023
+    pathname: M/ML/MLEHMANN/Guard-1.023.tar.gz
+    provides:
+      Guard 1.023
+    requirements:
+      ExtUtils::MakeMaker 0
   HTML-Parser-3.71
     pathname: G/GA/GAAS/HTML-Parser-3.71.tar.gz
     provides:
