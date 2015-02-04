@@ -10,6 +10,7 @@ requires 'YAML::XS' => '0.57';
 requires 'Config::ZOMG' => '1.000000';
 
 requires 'Starlet' => '0.24';
+requires 'Gazelle' => '0.22';
 requires 'Plack' => '1.0033';
 requires 'Carp' => '1.3301';
 requires 'Data::Dumper::Concise' => '2.022';
