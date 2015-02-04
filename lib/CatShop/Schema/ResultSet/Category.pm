@@ -35,4 +35,7 @@ sub load_path {
     return $category->first;
 }
 
+sub nav_options {
+}
+
 1;
